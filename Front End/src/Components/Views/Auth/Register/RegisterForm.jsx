@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SocialLoginButtons from "../SocialLoginButtons/SocialLoginButtons";
 
 const RegisterForm = () => {
 
@@ -9,7 +10,6 @@ const RegisterForm = () => {
         password: '',
         confirmPassword: '',
         gender: '',
-        age: '',
     });
     const [passwordStrength, setPasswordStrength] = useState('');
 
@@ -152,6 +152,8 @@ const RegisterForm = () => {
                 </select>
             </div>
 
+
+
             <button
                 type="submit"
                 className="bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
@@ -167,6 +169,18 @@ const RegisterForm = () => {
                     </Link>
                 </p>
             </div>
+
+            <div className="w-full flex justify-center items-center mb-3">
+                <div className="w-2/5 bg-slate-700 h-[1px]"></div>
+                <div className="w-auto flex justify-center items-center">
+                    <span className="pb-1 font-bold mx-2 uppercase">or</span>
+                </div>
+                <div className="w-2/5 bg-slate-700 h-[1px]"></div>
+            </div>
+
+            <SocialLoginButtons></SocialLoginButtons>
+
+
         </form>
     )
 }

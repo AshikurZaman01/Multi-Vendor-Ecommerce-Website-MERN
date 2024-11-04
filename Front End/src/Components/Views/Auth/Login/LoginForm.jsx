@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import SocialLoginButtons from "../SocialLoginButtons/SocialLoginButtons";
 
 const LoginForm = () => {
     const [user, setUser] = useState({
@@ -70,6 +71,17 @@ const LoginForm = () => {
                     </Link>
                 </p>
             </div>
+
+            <div className="w-full flex justify-center items-center mb-3">
+                <div className="w-2/5 bg-slate-700 h-[1px]"></div>
+                <div className="w-auto flex justify-center items-center">
+                    <span className="pb-1 font-bold mx-2 uppercase">or</span>
+                </div>
+                <div className="w-2/5 bg-slate-700 h-[1px]"></div>
+            </div>
+
+            <SocialLoginButtons></SocialLoginButtons>
+
         </form>
     );
 };
