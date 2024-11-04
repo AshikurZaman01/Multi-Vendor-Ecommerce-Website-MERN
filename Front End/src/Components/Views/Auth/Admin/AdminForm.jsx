@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const AdminForm = () => {
     const [admin, setAdmin] = useState({ email: '', password: '' });
@@ -15,6 +16,7 @@ const AdminForm = () => {
         e.preventDefault();
         // Add your login logic here
         console.log(admin);
+        toast.success('Login successful');
     };
 
     return (

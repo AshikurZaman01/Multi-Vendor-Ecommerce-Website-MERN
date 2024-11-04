@@ -10,6 +10,9 @@ import Register from './Components/Views/Auth/Register/Register';
 import Home from './Components/Pages/Home/Home';
 import Login from './Components/Views/Auth/Login/Login';
 import AdminLogin from './Components/Views/Auth/Admin/AdminLogin';
+import { Provider } from 'react-redux';
+import store from './Redux/Store/store';
+import { Toaster } from 'react-hot-toast'
 
 const router = createBrowserRouter([
   {
@@ -40,6 +43,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+      <Toaster toastOptions={{
+        position: 'top-center'
+      }}></Toaster>
+    </Provider>
   </React.StrictMode >
 )
