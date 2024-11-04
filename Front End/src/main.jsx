@@ -6,9 +6,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Roots from './Components/Roots/Roots';
-import Login from './Components/Views/Auth/Login';
 import Register from './Components/Views/Auth/Register/Register';
 import Home from './Components/Pages/Home/Home';
+import Login from './Components/Views/Auth/Login/Login';
 
 const router = createBrowserRouter([
   {
