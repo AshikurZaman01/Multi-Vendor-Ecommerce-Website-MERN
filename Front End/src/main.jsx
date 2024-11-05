@@ -13,31 +13,55 @@ import AdminLogin from './Components/Views/Auth/Admin/AdminLogin';
 import { Provider } from 'react-redux';
 import store from './Redux/Store/store';
 import { Toaster } from 'react-hot-toast'
+import Seller from './Components/Views/Seller/Seller';
+import AdminDashboard from './Components/Views/Auth/Admin/AdminDashboard/AdminDashboard';
+import AdminMainLayout from './Components/Views/Auth/Admin/AdminMainLayout/AdminMainLayout';
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Roots></Roots>,
+    element: <Roots />,
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home />
       },
       {
         path: "/login",
-        element: <Login></Login>
+        element: <Login />
       },
       {
         path: "/register",
-        element: <Register></Register>
+        element: <Register />
       },
-      {
-        path: "/admin/login",
-        element: <AdminLogin></AdminLogin>
-      }
     ]
   },
+
+  {
+    path: "/seller",
+    element: <Seller />
+  },
+
+
+  {
+    path: "/admin",
+    element: <AdminMainLayout></AdminMainLayout>,
+    children: [
+      {
+        path: "login",
+        element: <AdminLogin />
+      },
+      {
+        path: "dashboard",
+        element: <AdminDashboard />
+      },
+
+    ]
+  }
 ]);
+
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

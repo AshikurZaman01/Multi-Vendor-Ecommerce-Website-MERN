@@ -27,7 +27,7 @@ const AdminForm = () => {
         } else if (successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
-            navigate('/')
+            navigate('/admin/dashboard')
         }
     }, [dispatch, errorMessage, successMessage, navigate])
 
