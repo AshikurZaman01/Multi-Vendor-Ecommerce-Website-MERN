@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { adminLogin } from "../../../../Redux/features/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { adminLogin, messageClear } from "../../../../Redux/features/authSlice";
+import { PulseLoader } from "react-spinners";
 
 const AdminForm = () => {
 
     const dispatch = useDispatch();
-
-
+    const { isLoading, successMessage, errorMessage } = useSelector((state) => state.auth)
+    console.log(isLoading, successMessage, errorMessage)
 
     const [admin, setAdmin] = useState({ email: '', password: '' });
     const handleInputChange = (e) => {
@@ -18,14 +19,22 @@ const AdminForm = () => {
         }));
     };
 
+    useEffect(() => {
+        if (errorMessage) {
+            toast.error(errorMessage)
+            dispatch(messageClear())
+        } else if (successMessage) {
+            toast.success(successMessage)
+            dispatch(messageClear())
+        }
+    }, [dispatch, errorMessage, successMessage])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add your login logic here
 
         dispatch(adminLogin(admin))
         console.log(admin);
 
-        toast.success('Login successful');
     };
 
     return (
@@ -61,10 +70,15 @@ const AdminForm = () => {
             </div>
 
             <button
+                disabled={isLoading ? true : false}
                 type="submit"
                 className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white font-semibold py-2 px-4 rounded-lg w-full transition duration-200"
             >
-                Login
+                {isLoading ? (
+                    <PulseLoader color="#36d7b7" size={10} margin={2} />
+                ) : (
+                    <span>Login</span>
+                )}
             </button>
         </form>
     );
