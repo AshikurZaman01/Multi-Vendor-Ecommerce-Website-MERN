@@ -6,13 +6,16 @@ export const adminLogin = createAsyncThunk(
     'auth/adminLogin',
     async (info, { rejectWithValue, fulfillWithValue }) => {
         try {
+
             const { data } = await baseURL.post('admin/adminLogin', info, { withCredentials: true });
-            console.log(data);
+            localStorage.setItem('accessToken', data.token)
             return fulfillWithValue(data);
+
         } catch (error) {
-            // Enhanced error handling
+
             const message = error.response?.data?.message || error.message || "An error occurred";
             return rejectWithValue(message);
+
         }
     }
 );

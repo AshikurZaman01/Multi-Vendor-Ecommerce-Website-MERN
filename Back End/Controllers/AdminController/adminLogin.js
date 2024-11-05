@@ -42,7 +42,7 @@ const adminLogin = async (req, res) => {
         });
 
         // Send success response
-        return res.status(200).json({ success: true, message: "Admin login successfully", AdminToken: token });
+        return res.status(200).json({ success: true, message: "Admin login successfully", token: token });
 
     } catch (error) {
         console.error(error);

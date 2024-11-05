@@ -3,12 +3,13 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { adminLogin, messageClear } from "../../../../Redux/features/authSlice";
 import { PulseLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 const AdminForm = () => {
 
     const dispatch = useDispatch();
     const { isLoading, successMessage, errorMessage } = useSelector((state) => state.auth)
-    console.log(isLoading, successMessage, errorMessage)
+    const navigate = useNavigate();
 
     const [admin, setAdmin] = useState({ email: '', password: '' });
     const handleInputChange = (e) => {
@@ -26,15 +27,14 @@ const AdminForm = () => {
         } else if (successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
+            navigate('/')
         }
-    }, [dispatch, errorMessage, successMessage])
+    }, [dispatch, errorMessage, successMessage, navigate])
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(adminLogin(admin))
-        console.log(admin);
-
     };
 
     return (
