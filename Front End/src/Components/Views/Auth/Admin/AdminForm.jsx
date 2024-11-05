@@ -1,9 +1,15 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { adminLogin } from "../../../../Redux/features/authSlice";
 
 const AdminForm = () => {
-    const [admin, setAdmin] = useState({ email: '', password: '' });
 
+    const dispatch = useDispatch();
+
+
+
+    const [admin, setAdmin] = useState({ email: '', password: '' });
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setAdmin((prevAdmin) => ({
@@ -15,7 +21,10 @@ const AdminForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Add your login logic here
+
+        dispatch(adminLogin(admin))
         console.log(admin);
+
         toast.success('Login successful');
     };
 

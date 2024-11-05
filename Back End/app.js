@@ -1,13 +1,15 @@
 const express = require('express');
-const cors = require('cors'); // Importing cors
+const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 const cookieParser = require('cookie-parser');
 const DBConnection = require('./config/DBconnection');
 const { notFound, defaultErrorHandler } = require('./Middlewear/ErrorHandler/errorHandler');
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(cors({
-    origin: "http://localhost:5173/",
+    origin: "http://localhost:5173",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "Origin", "Accept"],
@@ -21,7 +23,9 @@ app.get("/", (req, res) => {
     res.send("hello");
 });
 
-
+// Routes
+app.use('/api/auth', require('./Routes/AuthRoutes/authRoutes'));
+app.use('/api/admin', require('./Routes/AdminRoutes/adminRoutes'));
 
 // Error handling middlewares
 app.use(notFound);
