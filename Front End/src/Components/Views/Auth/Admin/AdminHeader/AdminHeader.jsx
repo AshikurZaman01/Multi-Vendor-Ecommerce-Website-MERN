@@ -10,7 +10,7 @@ const AdminHeader = () => {
                     <SearchBar />
                 </div>
 
-                <div className="flex items-center">
+                <div className=" items-center hidden md:block">
                     <Profile />
                 </div>
 
