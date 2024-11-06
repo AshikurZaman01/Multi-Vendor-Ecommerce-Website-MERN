@@ -14,7 +14,7 @@ const AdminMainLayout = () => {
 
                 <AdminHeader />
 
-                <main className="p-6 ml-0 lg:ml-60 pt-[50px]">
+                <main className="p-6 ml-0 lg:ml-60">
                     <Outlet />
                 </main>
 
