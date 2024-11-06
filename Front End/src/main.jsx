@@ -16,6 +16,7 @@ import Seller from './Components/Views/Seller/Seller';
 import AdminDashboard from './Components/Views/Auth/Admin/AdminDashboard/AdminDashboard';
 import AdminMainLayout from './Components/Views/Auth/Admin/AdminMainLayout/AdminMainLayout';
 import AdminLogin from './Components/Views/Auth/Admin/AdminLogin/AdminLogin';
+import Orders from './Components/Views/Auth/Admin/AdminSidebar/Orders';
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <AdminDashboard />
       },
+      {
+        path: "orders",
+        element:<Orders />
+      }
 
 
     ]

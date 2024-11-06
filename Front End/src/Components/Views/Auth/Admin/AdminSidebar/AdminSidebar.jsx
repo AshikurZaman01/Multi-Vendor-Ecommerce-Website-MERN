@@ -33,6 +33,7 @@ const AdminSidebar = () => {
 
     return (
         <div className="relative">
+
             {/* Toggle button for mobile */}
             <button
                 onClick={handleToggle}
@@ -48,7 +49,7 @@ const AdminSidebar = () => {
                     <span>Admin Panel</span>
                 </div>
 
-                <Nav routes={routes} isOpen={isOpen} onRouteClick={handleRouteClick} />
+                <Nav routes={routes} isOpen={isOpen} setIsOpen={setIsOpen} onRouteClick={handleRouteClick} />
 
                 <div className='divider'></div>
 
