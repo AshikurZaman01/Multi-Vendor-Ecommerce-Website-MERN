@@ -44,7 +44,7 @@ const AdminSidebar = () => {
             {/* Sidebar */}
             <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-[#F3B391] to-[#E39A75] text-slate-800 shadow-lg flex flex-col transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 ease-in-out z-10`}>
 
-                <div className="flex items-center justify-center h-20 shadow-md text-white text-2xl font-bold bg-[#D68060] px-4">
+                <div className="flex items-center justify-center h-20 shadow-md text-white text-2xl font-bold bg-[#D68060] px-4 py-10">
                     <span>Admin Panel</span>
                 </div>
 

@@ -3,6 +3,8 @@ import AdminSidebar from "../AdminSidebar/AdminSidebar";
 import { Outlet } from 'react-router-dom';
 
 const AdminMainLayout = () => {
+
+
     return (
         <div className="flex">
 
