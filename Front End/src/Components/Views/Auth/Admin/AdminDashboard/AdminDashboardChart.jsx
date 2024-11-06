@@ -1,3 +1,4 @@
+// AdminDashboardChart.js
 import Chart from 'react-apexcharts';
 
 const AdminDashboardChart = () => {
@@ -6,7 +7,7 @@ const AdminDashboardChart = () => {
         series: [
             {
                 name: "Orders",
-                data: [31, 40, 28, 51, 42, 109, 100]
+                data: [31, 40, 28, 51, 42, 109, 100],
             },
             {
                 name: "Revenue",
@@ -19,7 +20,7 @@ const AdminDashboardChart = () => {
         ],
 
         options: {
-            color: ['#FF5733', '#28A745', '#007BFF'],
+            colors: ['#FF5733', '#28A745', '#007BFF'],
             plotOptions: {
                 bar: {
                     horizontal: false,
@@ -39,7 +40,7 @@ const AdminDashboardChart = () => {
                 style: {
                     fontSize: '12px',
                     fontWeight: 'bold',
-                    colors: ['#fff'],
+                    colors: ['gray'],
                 },
             },
             stroke: {
@@ -47,7 +48,7 @@ const AdminDashboardChart = () => {
                 curve: 'smooth',
                 lineCap: 'round',
                 colors: ['#fff'],
-                width: 2,
+                width: 0.5,
             },
             xaxis: {
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -74,21 +75,38 @@ const AdminDashboardChart = () => {
                     colors: '#777',
                 },
             },
+            responsive: [
+                {
+                    breakpoint: 565,
+                    options: {
+                        plotOptions: {
+                            bar: {
+                                horizontal: true,
+                            }
+                        },
+                        xaxis: {
+                            labels: {
+                                style: {
+                                    fontSize: '12px',
+                                }
+                            },
+                        },
+                    }
+                }
+            ]
         }
     }
 
     return (
-        <div className="w-full flex justify-center mt-7">
-            <div className="w-full lg:w-10/12 p-6 bg-white shadow-lg rounded-lg transform transition duration-300 hover:scale-105">
+        <div className="w-full h-full flex justify-center mt-7">
+            <div className="w-full lg:w-full p-6 bg-white shadow-lg rounded-lg transition-all duration-300 hover:scale-105">
                 <div className="text-center text-2xl font-semibold mb-4 text-gray-800">
                     <h2>Monthly Data Overview</h2>
                 </div>
-
                 <Chart options={state.options} series={state.series} type="bar" height={350} />
-
             </div>
         </div>
     )
 }
 
-export default AdminDashboardChart
+export default AdminDashboardChart;
