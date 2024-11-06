@@ -11,11 +11,12 @@ const AdminDashboard = () => {
             </div>
 
             <div className="flex justify-between items-start gap-5 flex-col md:flex-row ">
-                <div className="w-8/12 h-full">
+
+                <div className="w-full md:w-8/12 h-full">
                     <AdminDashboardChart />
                 </div>
 
-                <div className="w-4/12 h-full">
+                <div className="w-full md:w-4/12 h-full">
                     <RecentSellerMsg />
                 </div>
             </div>
