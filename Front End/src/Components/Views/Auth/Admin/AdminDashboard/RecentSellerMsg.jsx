@@ -13,8 +13,8 @@ const RecentSellerMsg = () => {
                     </Link>
                 </div>
 
-                {/* Scrollable container */}
-                <div className="overflow-y-auto h-[365px] mt-4 pr-2 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 ">
+                {/* Scrollable container with hidden scrollbar */}
+                <div className="overflow-y-auto h-[365px] mt-4 pr-2 scrollbar-hide">
                     {[...Array(4)].map((_, index) => (
                         <div key={index} className="flex flex-col gap-2 pt-4 text-white">
                             <ol className="relative border-1 border-slate-600 ml-4">
