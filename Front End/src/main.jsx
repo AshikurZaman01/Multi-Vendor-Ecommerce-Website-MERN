@@ -43,19 +43,20 @@ const router = createBrowserRouter([
     element: <Seller />
   },
 
-
+  {
+    path: "/adminLogin",
+    element: <AdminLogin />
+  },
   {
     path: "/admin",
     element: <AdminMainLayout></AdminMainLayout>,
     children: [
-      {
-        path: "login",
-        element: <AdminLogin />
-      },
+
       {
         path: "dashboard",
         element: <AdminDashboard />
       },
+
 
     ]
   }
