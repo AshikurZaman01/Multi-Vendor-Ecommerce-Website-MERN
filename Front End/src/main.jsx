@@ -9,13 +9,13 @@ import Roots from './Components/Roots/Roots';
 import Register from './Components/Views/Auth/Register/Register';
 import Home from './Components/Pages/Home/Home';
 import Login from './Components/Views/Auth/Login/Login';
-import AdminLogin from './Components/Views/Auth/Admin/AdminLogin';
 import { Provider } from 'react-redux';
 import store from './Redux/Store/store';
 import { Toaster } from 'react-hot-toast'
 import Seller from './Components/Views/Seller/Seller';
 import AdminDashboard from './Components/Views/Auth/Admin/AdminDashboard/AdminDashboard';
 import AdminMainLayout from './Components/Views/Auth/Admin/AdminMainLayout/AdminMainLayout';
+import AdminLogin from './Components/Views/Auth/Admin/AdminLogin/AdminLogin';
 
 
 const router = createBrowserRouter([
