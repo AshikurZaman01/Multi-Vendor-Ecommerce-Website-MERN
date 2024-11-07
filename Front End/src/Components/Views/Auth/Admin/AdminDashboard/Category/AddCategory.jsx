@@ -2,7 +2,7 @@ import { CiSquarePlus } from "react-icons/ci";
 
 const AddCategory = () => {
     return (
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 mt-10">
+        <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 mt-10 sm:max-w-lg lg:max-w-2xl">
             <div className="text-center py-2 text-blue-600 font-semibold text-xl">
                 <h1>Add New Category</h1>
             </div>
