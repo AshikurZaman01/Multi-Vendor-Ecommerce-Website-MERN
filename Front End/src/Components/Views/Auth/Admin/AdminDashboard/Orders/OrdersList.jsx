@@ -17,17 +17,16 @@ const OrdersList = ({ perPageItems, currentPage, searchData }) => {
     return (
         <div className="mt-5 overflow-x-auto rounded-lg bg-white shadow-lg">
             <div className="divide-y divide-gray-200">
-                <div className="flex items-center justify-between px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white uppercase text-xs font-bold border-b border-indigo-300">
+                <div className="grid grid-cols-2 sm:grid-cols-4 items-center justify-between px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white uppercase text-xs font-bold border-b border-indigo-300">
                     <span>Order ID</span>
                     <span>Price</span>
                     <span>Payment Status</span>
                     <span>Order Status</span>
-                    <LuArrowBigDownDash className="text-2xl text-white" />
                 </div>
                 {filteredOrders.slice((currentPage - 1) * perPageItems, currentPage * perPageItems).map((order, index) => (
                     <div
                         key={order.id}
-                        className={`flex justify-between items-center p-4 text-indigo-900 transition duration-200 
+                        className={`grid grid-cols-2 sm:grid-cols-4 justify-between items-center p-4 text-indigo-900 transition duration-200 
                             ${index % 4 < 2 ? "bg-indigo-50" : "bg-purple-50"} 
                             hover:bg-indigo-100 shadow-sm rounded-lg mb-2`}
                     >
@@ -47,7 +46,7 @@ const OrdersList = ({ perPageItems, currentPage, searchData }) => {
                         >
                             {order.orderStatus}
                         </span>
-                        <button className="text-indigo-600 hover:text-indigo-800 transition duration-200 font-semibold">View</button>
+                        <button className="sm:hidden text-indigo-600 hover:text-indigo-800 transition duration-200 font-semibold">View</button>
                     </div>
                 ))}
             </div>
