@@ -13,10 +13,10 @@ import { Provider } from 'react-redux';
 import store from './Redux/Store/store';
 import { Toaster } from 'react-hot-toast'
 import Seller from './Components/Views/Seller/Seller';
-import AdminDashboard from './Components/Views/Auth/Admin/AdminDashboard/AdminDashboard';
+import AdminDashboard from './Components/Views/Auth/Admin/AdminDashboard/Dashboard/AdminDashboard';
 import AdminMainLayout from './Components/Views/Auth/Admin/AdminMainLayout/AdminMainLayout';
 import AdminLogin from './Components/Views/Auth/Admin/AdminLogin/AdminLogin';
-import Orders from './Components/Views/Auth/Admin/AdminSidebar/Orders';
+import Orders from './Components/Views/Auth/Admin/AdminDashboard/Orders/Orders';
 
 
 const router = createBrowserRouter([
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       },
       {
         path: "orders",
-        element:<Orders />
+        element: <Orders />
       }
 
 
