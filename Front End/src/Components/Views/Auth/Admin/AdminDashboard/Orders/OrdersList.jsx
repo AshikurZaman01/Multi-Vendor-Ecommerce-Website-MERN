@@ -1,54 +1,37 @@
 import { LuArrowBigDownDash } from "react-icons/lu";
+import { Link } from 'react-router-dom';
 
-const OrdersList = ({ perPageItems, currentPage, searchData }) => {
-    const orders = [
-        { id: "5422", price: "$890", paymentStatus: "Pending", orderStatus: "Processing" },
-        { id: "6543", price: "$320", paymentStatus: "Completed", orderStatus: "Delivered" },
-        { id: "7654", price: "$410", paymentStatus: "Pending", orderStatus: "Shipped" },
-        { id: "8765", price: "$220", paymentStatus: "Completed", orderStatus: "Delivered" },
-        { id: "9876", price: "$650", paymentStatus: "Pending", orderStatus: "Processing" },
-        // More orders here...
-    ];
-
-    const filteredOrders = orders.filter((order) =>
-        order.id.includes(searchData)
-    );
-
+const OrdersList = () => {
     return (
-        <div className="mt-5 overflow-x-auto rounded-lg bg-white shadow-lg">
-            <div className="divide-y divide-gray-200">
-                <div className="grid grid-cols-2 sm:grid-cols-4 items-center justify-between px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white uppercase text-xs font-bold border-b border-indigo-300">
-                    <span>Order ID</span>
-                    <span>Price</span>
-                    <span>Payment Status</span>
-                    <span>Order Status</span>
-                </div>
-                {filteredOrders.slice((currentPage - 1) * perPageItems, currentPage * perPageItems).map((order, index) => (
-                    <div
-                        key={order.id}
-                        className={`grid grid-cols-2 sm:grid-cols-4 justify-between items-center p-4 text-indigo-900 transition duration-200 
-                            ${index % 4 < 2 ? "bg-indigo-50" : "bg-purple-50"} 
-                            hover:bg-indigo-100 shadow-sm rounded-lg mb-2`}
-                    >
-                        <span className="font-medium">{order.id}</span>
-                        <span>{order.price}</span>
-                        <span
-                            className={`px-2 py-1 rounded-full font-semibold ${
-                                order.paymentStatus === "Completed" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
-                            }`}
-                        >
-                            {order.paymentStatus}
-                        </span>
-                        <span
-                            className={`px-2 py-1 rounded-full font-semibold ${
-                                order.orderStatus === "Delivered" ? "bg-blue-100 text-blue-800" : "bg-pink-100 text-pink-800"
-                            }`}
-                        >
-                            {order.orderStatus}
-                        </span>
-                        <button className="sm:hidden text-indigo-600 hover:text-indigo-800 transition duration-200 font-semibold">View</button>
+        <div className="relative mt-5 overflow-x-auto shadow-lg rounded-lg">
+            <div className="w-full bg-white text-sm text-left rounded-lg">
+                <div className="text-sm text-gray-500 uppercase border-b border-gray-300 bg-gray-100">
+
+                    <div className="flex justify-between items-center px-4 py-3">
+                        <div className="font-bold text-gray-800 w-[20%]">Order ID</div>
+                        <div className="font-bold text-gray-800 w-[20%]">Price</div>
+                        <div className="font-bold text-gray-800 w-[20%]">Payment Status</div>
+                        <div className="font-bold text-gray-800 w-[20%]">Order Status</div>
+                        <div className="font-bold text-gray-800 w-[20%]">Action</div>
+                        <div className="w-[5%] flex justify-center">
+                            <LuArrowBigDownDash className="text-2xl text-gray-600 cursor-pointer hover:text-gray-800 transition duration-200" />
+                        </div>
                     </div>
-                ))}
+                </div>
+
+                {/* Order Row */}
+                <div className="mt-3 px-4 py-2 border-b border-gray-200 hover:bg-gray-50 transition duration-200">
+
+                    <div className="flex justify-between items-center">
+                        <div className="text-gray-700 w-[20%] font-medium">5422</div>
+                        <div className="text-gray-700 w-[20%] font-medium">$890</div>
+                        <div className="text-yellow-500 w-[20%] font-medium">Pending</div>
+                        <div className="text-yellow-500 w-[20%] font-medium">Pending</div>
+                        <div className="w-[20%] text-center">
+                            <Link to="#" className="text-blue-600 hover:underline">View</Link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

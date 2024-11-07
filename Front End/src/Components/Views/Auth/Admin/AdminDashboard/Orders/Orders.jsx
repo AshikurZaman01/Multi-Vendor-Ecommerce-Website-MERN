@@ -2,6 +2,7 @@ import { useState } from "react";
 import OrdersPerPage from "./OrdersPerPage";
 import OrderSearch from "./OrderSearch";
 import OrdersList from "./OrdersList";
+import Pagination from "../../../../../Utils/Pagination/Pagination";
 
 const Orders = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -17,6 +18,18 @@ const Orders = () => {
                 </div>
                 <OrdersList perPageItems={perPageItems} currentPage={currentPage} searchData={searchData} />
             </div>
+
+            <div>
+                <Pagination
+                    pageNumber={currentPage}
+                    setPageNumber={setCurrentPage}
+                    perPageItems={perPageItems}
+                    totalItems={50}
+                    showItem={5}
+                >
+                </Pagination>
+            </div>
+
         </div>
     );
 };
