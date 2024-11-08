@@ -19,6 +19,7 @@ import AdminLogin from './Components/Views/Auth/Admin/AdminLogin/AdminLogin';
 import Orders from './Components/Views/Auth/Admin/AdminDashboard/Orders/Orders';
 import Category from './Components/Views/Auth/Admin/AdminDashboard/Category/Category';
 import AdminSeller from './Components/Views/Auth/Admin/AdminDashboard/AdminSeller/AdminSeller';
+import PaymentRequest from './Components/Views/Auth/Admin/PaymentRequest/PaymentRequest';
 
 
 const router = createBrowserRouter([
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "seller",
         element: <AdminSeller />
+      },
+      {
+        path: "paymentRequest",
+        element: <PaymentRequest />
       }
 
 

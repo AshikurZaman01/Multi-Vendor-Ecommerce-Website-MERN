@@ -13,7 +13,7 @@ const AdminSidebar = () => {
         { id: 2, path: 'orders', name: 'Orders', icon: <FaChartBar /> },
         { id: 3, path: 'category', name: 'Category', icon: <TbCategoryPlus /> },
         { id: 4, path: 'seller', name: 'Seller', icon: <FaUsers /> },
-        { id: 5, path: 'payment', name: 'Payment', icon: <MdOutlinePayment /> },
+        { id: 5, path: 'paymentRequest', name: 'Payment', icon: <MdOutlinePayment /> },
         { id: 6, path: 'deactiveSeller', name: 'Deactive Seller', icon: <FaUserSlash /> },
         { id: 7, path: 'sellerRequests', name: 'Seller Requests', icon: <RiGitClosePullRequestLine /> },
         { id: 8, path: 'liveChat', name: 'Live Chat', icon: <FaUsers /> },
