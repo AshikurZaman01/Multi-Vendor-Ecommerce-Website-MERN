@@ -4,40 +4,26 @@ import MessageInput from "./MessageInput";
 
 const MainContent = ({ toggleSidebar }) => {
     return (
-        <div className="flex-1 bg-white md:pl-4">
-
-
-            <div className="flex items-center justify-between p-4">
-
+        <div className="flex-1 rounded-lg p-4 backdrop-blur-lg bg-white/20 shadow-lg">
+            <div className="flex items-center justify-between p-4 mb-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg shadow-md">
                 <div className="flex items-center gap-3">
                     <img
-                        className="w-14 h-14 rounded-full border-2 border-blue-600"
+                        className="w-16 h-16 rounded-full border-2 border-white"
                         src="https://cdn-icons-png.flaticon.com/128/6997/6997662.png"
                         alt="Active Seller"
                     />
-
-                    <h2 className="text-lg font-bold">Piyal</h2>
-
-                    {/* toggle btn for mobile */}
-                    <div
-                        onClick={toggleSidebar}
-                        className="md:hidden flex items-center absolute right-4 top-4 justify-center w-10 h-10 bg-blue-600 text-white rounded-full cursor-pointer"
-                    >
-                        <FaList />
-                    </div>
-                    {/* toggle btn for mobile */}
-
+                    <h2 className="text-xl font-bold">Piyal</h2>
+                </div>
+                <div
+                    onClick={toggleSidebar}
+                    className="md:hidden flex items-center justify-center w-10 h-10 bg-white/30 rounded-full cursor-pointer"
+                >
+                    <FaList size={20} />
                 </div>
             </div>
 
-            {/* Chat Box  */}
             <ChatBox />
-            {/* Chat Box  */}
-
-            {/* Message Input  */}
             <MessageInput />
-            {/* Message Input  */}
-
         </div>
     );
 };
