@@ -20,6 +20,9 @@ import Orders from './Components/Views/Auth/Admin/AdminDashboard/Orders/Orders';
 import Category from './Components/Views/Auth/Admin/AdminDashboard/Category/Category';
 import AdminSeller from './Components/Views/Auth/Admin/AdminDashboard/AdminSeller/AdminSeller';
 import PaymentRequest from './Components/Views/Auth/Admin/PaymentRequest/PaymentRequest';
+import DeactiveSeller from './Components/Views/Auth/Admin/AdminDashboard/DeactiveSeller/DeactiveSeller';
+import SellerRequests from './Components/Views/Auth/Admin/AdminDashboard/SellerRequests/SellerRequests';
+import LiveChat from './Components/Views/Auth/Admin/LiveChat/LiveChat';
 
 
 const router = createBrowserRouter([
@@ -75,6 +78,18 @@ const router = createBrowserRouter([
       {
         path: "paymentRequest",
         element: <PaymentRequest />
+      },
+      {
+        path: "deactiveSeller",
+        element: <DeactiveSeller />
+      },
+      {
+        path: 'sellerRequests',
+        element: <SellerRequests />
+      },
+      {
+        path: 'liveChat',
+        element: <LiveChat />
       }
 
 

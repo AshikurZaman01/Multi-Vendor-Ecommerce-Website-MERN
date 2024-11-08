@@ -28,26 +28,26 @@ const PaymentRequest = () => {
     const Row = ({ index, style }) => {
         const { id, amount, status, date } = data[index];
         const statusColors = {
-            Pending: "bg-yellow-100 text-yellow-700",
-            Completed: "bg-green-100 text-green-700",
-            Failed: "bg-red-100 text-red-700",
+            Pending: "bg-yellow-200 text-yellow-900",
+            Completed: "bg-green-200 text-green-900",
+            Failed: "bg-red-200 text-red-900",
         };
 
         return (
             <div
                 style={style}
-                className="flex items-center text-sm rounded-lg p-2 hover:bg-gray-100 transition duration-150"
+                className="flex items-center text-sm rounded-lg p-2 hover:bg-gradient-to-r from-blue-100 to-blue-200 transition duration-150"
             >
-                <div className="w-[20%] p-2 whitespace-nowrap">{id}</div>
-                <div className="w-[20%] p-2 whitespace-nowrap">{amount}</div>
+                <div className="w-[20%] p-2 whitespace-nowrap text-blue-900 font-medium">{id}</div>
+                <div className="w-[20%] p-2 whitespace-nowrap text-indigo-800 font-semibold">{amount}</div>
                 <div className="w-[20%] p-2 whitespace-nowrap">
                     <span className={`py-1 px-3 rounded-full text-xs ${statusColors[status]}`}>
                         {status}
                     </span>
                 </div>
-                <div className="w-[20%] p-2 whitespace-nowrap">{date}</div>
+                <div className="w-[20%] p-2 whitespace-nowrap text-purple-700">{date}</div>
                 <div className="w-[20%] p-2 whitespace-nowrap">
-                    <button className="bg-blue-500 text-white py-1 px-3 rounded-lg shadow hover:bg-blue-600 transition">
+                    <button className="bg-gradient-to-r from-teal-400 to-teal-600 text-white py-1 px-3 rounded-lg shadow hover:from-teal-500 hover:to-teal-700 transition">
                         Confirm
                     </button>
                 </div>
@@ -57,12 +57,14 @@ const PaymentRequest = () => {
 
     return (
         <div className="px-2 lg:px-7 pt-5">
-            <div className="w-full p-4 rounded-md bg-white shadow-md">
-                <h1 className="text-2xl font-semibold pb-5 text-gray-800">Withdrawal Requests</h1>
+            <div className="w-full p-4 rounded-md bg-gradient-to-br from-gray-50 to-gray-200 shadow-lg">
+                <h1 className="text-2xl font-semibold pb-5 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                    Withdrawal Requests
+                </h1>
                 <div className="w-full">
                     <div className="w-full overflow-x-auto">
                         {/* Table Header */}
-                        <div className="flex uppercase text-xs font-semibold bg-gray-100 p-2 rounded-lg text-gray-600">
+                        <div className="flex uppercase text-xs font-semibold bg-gradient-to-r from-gray-200 to-gray-300 p-2 rounded-lg text-gray-700">
                             <div className="w-[20%] p-2">No</div>
                             <div className="w-[20%] p-2">Amount</div>
                             <div className="w-[20%] p-2">Status</div>
@@ -76,7 +78,7 @@ const PaymentRequest = () => {
                             className="List"
                             height={350}
                             itemCount={data.length}
-                            itemSize={45}
+                            itemSize={50}
                             outerElementType={outerElementType}
                         >
                             {Row}
