@@ -23,6 +23,9 @@ import PaymentRequest from './Components/Views/Auth/Admin/PaymentRequest/Payment
 import DeactiveSeller from './Components/Views/Auth/Admin/AdminDashboard/DeactiveSeller/DeactiveSeller';
 import SellerRequests from './Components/Views/Auth/Admin/AdminDashboard/SellerRequests/SellerRequests';
 import LiveChat from './Components/Views/Auth/Admin/LiveChat/LiveChat';
+import OrdersDetails from './Components/Views/Auth/Admin/AdminDashboard/Orders/OrdersDetails/OrdersDetails';
+import SellerDashboard from './Components/Views/Auth/SellerDashboard/SellerLogin/SellerLogin';
+import SellerLogin from './Components/Views/Auth/SellerDashboard/SellerLogin/SellerLogin';
 
 
 const router = createBrowserRouter([
@@ -50,9 +53,14 @@ const router = createBrowserRouter([
     element: <Seller />
   },
 
+
+
+
+
+
   {
     path: "/adminLogin",
-    element: <AdminLogin />
+    element: <AdminLogin />,
   },
   {
     path: "/admin",
@@ -67,6 +75,11 @@ const router = createBrowserRouter([
         path: "orders",
         element: <Orders />
       },
+      {
+        path: "orderDetails/:id",
+        element: <OrdersDetails />
+      },
+
       {
         path: "category",
         element: <Category />
@@ -94,8 +107,24 @@ const router = createBrowserRouter([
 
 
     ]
-  }
+  },
+
+
+  {
+    path: "/sellerLogin",
+    element: <SellerLogin />,
+    children: [
+      {
+        path: "/sellerDa",
+        element: <SellerDashboard />
+      }
+    ]
+  },
+
+
+
 ]);
+
 
 
 
