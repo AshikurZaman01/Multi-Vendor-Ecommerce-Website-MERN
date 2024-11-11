@@ -37,30 +37,23 @@ const SellerSidebar = () => {
 
     return (
         <div className="relative">
-
-            {/* Toggle button for mobile */}
             <button
                 onClick={handleToggle}
-                className="lg:hidden fixed top-3 left-4 z-20 p-2 bg-black text-white rounded-md"
+                className="lg:hidden fixed top-3 left-4 z-20 p-2 bg-[#4A90E2] text-white rounded-md shadow-md transition duration-300 hover:bg-[#357ABD]"
             >
                 {isOpen ? <FaTimes /> : <FaBars />}
             </button>
 
-            {/* Sidebar */}
-            <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-[#F3B391] to-[#E39A75] text-slate-800 shadow-lg flex flex-col transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 ease-in-out z-10`}>
-
-                <div className="flex items-center justify-center h-20 shadow-md text-white text-2xl font-bold bg-[#D68060] px-4 py-10">
+            <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-[#4A90E2] to-[#D5E8F6] text-slate-800 shadow-lg flex flex-col transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 ease-in-out z-10`}>
+                <div className="flex items-center justify-center h-20 text-white text-2xl font-bold bg-[#4A90E2] shadow-md">
                     <span>Seller Panel</span>
                 </div>
 
                 <SellerNav routes={routes} isOpen={isOpen} setIsOpen={setIsOpen} onRouteClick={handleRouteClick} />
-
                 <div className='divider my-0'></div>
-
                 <SellerLogout />
             </div>
 
-            {/* Overlay for mobile */}
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black opacity-50 z-5 lg:hidden"
@@ -68,7 +61,8 @@ const SellerSidebar = () => {
                 ></div>
             )}
         </div>
-    )
+    );
+
 }
 
 export default SellerSidebar
