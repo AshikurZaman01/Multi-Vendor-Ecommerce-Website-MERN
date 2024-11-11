@@ -24,9 +24,16 @@ import DeactiveSeller from './Components/Views/Auth/Admin/AdminDashboard/Deactiv
 import SellerRequests from './Components/Views/Auth/Admin/AdminDashboard/SellerRequests/SellerRequests';
 import LiveChat from './Components/Views/Auth/Admin/LiveChat/LiveChat';
 import OrdersDetails from './Components/Views/Auth/Admin/AdminDashboard/Orders/OrdersDetails/OrdersDetails';
-import SellerDashboard from './Components/Views/Auth/SellerDashboard/SellerLogin/SellerLogin';
 import SellerLogin from './Components/Views/Auth/SellerDashboard/SellerLogin/SellerLogin';
-
+import SellerMainLayout from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerMainLayout';
+import Dashboard from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/Dashboard/Dashboard';
+import Addproducts from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/AddProdcuts/Addproducts';
+import AllProducts from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/AllProducts/AllProducts';
+import DiscountProdcuts from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/DiscountProdcuts/DiscountProdcuts';
+import SellerOrders from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/Orders/SellerOrders';
+import SellerPayments from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/SellerPayments/SellerPayments';
+import ChatWithCustomers from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/ChatWithCustomer/ChatWithCustomers';
+import ChatWithSupport from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/ChatWithSupport/ChatWithSupport';
 
 const router = createBrowserRouter([
   {
@@ -104,8 +111,6 @@ const router = createBrowserRouter([
         path: 'liveChat',
         element: <LiveChat />
       }
-
-
     ]
   },
 
@@ -113,13 +118,45 @@ const router = createBrowserRouter([
   {
     path: "/sellerLogin",
     element: <SellerLogin />,
+  },
+  {
+    path: "/sellerMainLayout",
+    element: <SellerMainLayout></SellerMainLayout>,
     children: [
       {
-        path: "/sellerDa",
-        element: <SellerDashboard />
+        path: "dashboard",
+        element: <Dashboard />
+      },
+      {
+        path: "addProducts",
+        element: <Addproducts />
+      },
+      {
+        path: "allProducts",
+        element: <AllProducts />
+      },
+      {
+        path: "discountProducts",
+        element: <DiscountProdcuts />
+      },
+      {
+        path: "sellerOrders",
+        element: <SellerOrders />
+      },
+      {
+        path: "sellerPayments",
+        element: <SellerPayments />
+      },
+      {
+        path: "chatCustomers",
+        element: <ChatWithCustomers />
+      },
+      {
+        path: "chatSupport",
+        element: <ChatWithSupport />
       }
     ]
-  },
+  }
 
 
 

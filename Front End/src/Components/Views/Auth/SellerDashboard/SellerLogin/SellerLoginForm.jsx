@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { PulseLoader } from "react-spinners";
-import { useNavigate } from "react-router-dom";
 import { adminLogin, messageClear } from "../../../../../Redux/features/authSlice";
+import { useNavigate } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 
 const SellerLoginForm = () => {
 
@@ -12,6 +12,7 @@ const SellerLoginForm = () => {
     const navigate = useNavigate();
 
     const [admin, setAdmin] = useState({ email: '', password: '' });
+
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setAdmin((prevAdmin) => ({
@@ -27,7 +28,7 @@ const SellerLoginForm = () => {
         } else if (successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
-            navigate('/sellerDashboard')
+            navigate('/sellerMainLayout')
         }
     }, [dispatch, errorMessage, successMessage, navigate])
 
@@ -36,7 +37,6 @@ const SellerLoginForm = () => {
 
         dispatch(adminLogin(admin))
     };
-
 
     return (
         <form onSubmit={handleSubmit}>
