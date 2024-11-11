@@ -4,11 +4,11 @@ import SellerHeader from "./SellerHeader/SellerHeader";
 
 const SellerMainLayout = () => {
     return (
-        <div className="flex bg-[#F4F4F4] min-h-screen">
+        <div className="flex">
             <SellerSidebar />
-            <div className="flex-1">
+            <div className="flex-1 min-h-screen bg-[#FEFADC] text-slate-900">
                 <SellerHeader />
-                <main className="p-6">
+                <main className="p-6 ml-0 lg:ml-60">
                     <Outlet />
                 </main>
             </div>
