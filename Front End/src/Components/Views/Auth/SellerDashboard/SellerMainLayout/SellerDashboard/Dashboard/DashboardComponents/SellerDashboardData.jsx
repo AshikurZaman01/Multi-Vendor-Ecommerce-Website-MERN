@@ -10,7 +10,7 @@ const SellerDashboardData = () => {
 
                 <div className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 flex justify-between items-center p-5 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                     <div className="flex flex-col justify-start items-start space-y-2">
-                        <h2 className="text-4xl font-bold text-white">$3433</h2>
+                        <h2 className="text-4xl font-bold text-white">3433</h2>
                         <span className="font-medium text-white opacity-80">Total Sales</span>
                     </div>
                     <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center shadow-xl">
@@ -33,7 +33,7 @@ const SellerDashboardData = () => {
                 <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 flex justify-between items-center p-5 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                     <div className="flex flex-col justify-start items-start space-y-2">
                         <h2 className="text-4xl font-bold text-white">120</h2>
-                        <span className="font-medium text-white opacity-80">Sellers</span>
+                        <span className="font-medium text-white opacity-80">Orders</span>
                     </div>
                     <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center shadow-xl">
                         <FaUsers className="text-yellow-600 text-3xl" />
@@ -42,8 +42,8 @@ const SellerDashboardData = () => {
 
                 <div className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 flex justify-between items-center p-5 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                     <div className="flex flex-col justify-start items-start space-y-2">
-                        <h2 className="text-4xl font-bold text-white">$5320</h2>
-                        <span className="font-medium text-white opacity-80">Orders</span>
+                        <h2 className="text-4xl font-bold text-white">20</h2>
+                        <span className="font-medium text-white opacity-80">Pending Orders</span>
                     </div>
                     <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center shadow-xl">
                         <FaCartShopping className="text-red-600 text-3xl" />

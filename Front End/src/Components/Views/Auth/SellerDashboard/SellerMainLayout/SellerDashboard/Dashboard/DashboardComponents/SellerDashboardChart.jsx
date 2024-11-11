@@ -14,7 +14,7 @@ const SellerDashboardChart = () => {
                 data: [11, 32, 45, 32, 34, 52, 41]
             },
             {
-                name: "Sellers",
+                name: "Sales",
                 data: [15, 23, 54, 12, 78, 21, 43]
             }
         ],

@@ -7,7 +7,7 @@ const SellerRecentMsg = () => {
             <div className="w-full">
 
                 <div className="mt-4 flex justify-between items-center">
-                    <h3 className="text-xl font-semibold text-white">Recent Seller Messages</h3>
+                    <h3 className="text-md font-semibold text-white">Recent Customer Messages</h3>
                     <Link className="font-semibold text-sm text-yellow-300 hover:text-yellow-400 hover:underline">
                         View All
                     </Link>
