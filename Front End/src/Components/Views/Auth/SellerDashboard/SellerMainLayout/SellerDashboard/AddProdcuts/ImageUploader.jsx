@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IoIosImages, IoMdCloseCircle } from "react-icons/io";
 
 const ImageUploader = ({ images, setImages, imageShow, setImageShow }) => {

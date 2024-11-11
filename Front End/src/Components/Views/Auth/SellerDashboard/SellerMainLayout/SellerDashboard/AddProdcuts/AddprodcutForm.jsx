@@ -17,6 +17,8 @@ const AddProductForm = () => {
         { name: 'Electronics' },
         { name: 'Clothing' },
         { name: 'Home Appliances' },
+        { name: 'Furniture' },
+        { name: 'Books' },
     ]);
 
     const inputHandler = (e) => {
