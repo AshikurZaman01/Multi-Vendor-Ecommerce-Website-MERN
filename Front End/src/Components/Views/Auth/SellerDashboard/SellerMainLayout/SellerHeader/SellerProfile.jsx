@@ -14,7 +14,7 @@ const SellerProfile = () => {
             <div className="flex items-center gap-3">
                 <div className="text-right">
                     <h2 className="text-lg font-semibold text-gray-800">Ashik Peyal</h2>
-                    <span className="text-sm font-normal text-gray-600">Admin</span>
+                    <span className="text-sm font-normal text-gray-600">Seller</span>
                 </div>
 
                 {/* Profile Image */}

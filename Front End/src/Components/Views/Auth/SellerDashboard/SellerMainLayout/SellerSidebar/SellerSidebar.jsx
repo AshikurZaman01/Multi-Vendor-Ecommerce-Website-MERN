@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FaBars, FaHome, FaTimes, FaUsers, FaUserSlash } from 'react-icons/fa';
+import { FaBars, FaHome, FaTimes } from 'react-icons/fa';
 import { MdOutlinePayment, MdOutlineSupportAgent } from 'react-icons/md';
-import { RiCustomerServiceFill, RiGitClosePullRequestLine } from 'react-icons/ri';
+import { RiCustomerServiceFill } from 'react-icons/ri';
 import SellerLogout from './SellerLogout';
 import SellerNav from './SellerNav';
 import { RiShoppingBagFill } from "react-icons/ri";
@@ -50,7 +50,7 @@ const SellerSidebar = () => {
             <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-[#F3B391] to-[#E39A75] text-slate-800 shadow-lg flex flex-col transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 ease-in-out z-10`}>
 
                 <div className="flex items-center justify-center h-20 shadow-md text-white text-2xl font-bold bg-[#D68060] px-4 py-10">
-                    <span>Admin Panel</span>
+                    <span>Seller Panel</span>
                 </div>
 
                 <SellerNav routes={routes} isOpen={isOpen} setIsOpen={setIsOpen} onRouteClick={handleRouteClick} />

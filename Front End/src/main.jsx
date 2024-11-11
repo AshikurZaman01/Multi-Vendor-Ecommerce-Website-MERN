@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 import Roots from './Components/Roots/Roots';
@@ -55,6 +56,7 @@ const router = createBrowserRouter([
     ]
   },
 
+
   {
     path: "/seller",
     element: <Seller />
@@ -73,7 +75,6 @@ const router = createBrowserRouter([
     path: "/admin",
     element: <AdminMainLayout></AdminMainLayout>,
     children: [
-
       {
         path: "dashboard",
         element: <AdminDashboard />
@@ -86,7 +87,6 @@ const router = createBrowserRouter([
         path: "orderDetails/:id",
         element: <OrdersDetails />
       },
-
       {
         path: "category",
         element: <Category />
@@ -123,6 +123,10 @@ const router = createBrowserRouter([
     path: "/sellerMainLayout",
     element: <SellerMainLayout></SellerMainLayout>,
     children: [
+      {
+        path: "",
+        element: <Navigate to="dashboard" replace />
+      },
       {
         path: "dashboard",
         element: <Dashboard />
