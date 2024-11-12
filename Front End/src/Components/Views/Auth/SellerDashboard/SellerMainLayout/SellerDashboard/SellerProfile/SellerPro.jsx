@@ -5,7 +5,7 @@ const SellerPro = () => {
     return (
         <div className="px-2 lg:px-7 py-5">
 
-            <div className="w-full flex flex-wrap">
+            <div className="w-full flex flex-wrap ">
 
                 <div className="w-full md:w-6/12 ">
                     <LeftSide />

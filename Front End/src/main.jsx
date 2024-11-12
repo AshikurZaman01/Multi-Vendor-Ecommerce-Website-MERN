@@ -178,6 +178,8 @@ const router = createBrowserRouter([
       {
         path: "sellerProfile",
         element: <SellerPro />,
+        role: 'seller',
+        status: 'active'
       }
     ]
   }

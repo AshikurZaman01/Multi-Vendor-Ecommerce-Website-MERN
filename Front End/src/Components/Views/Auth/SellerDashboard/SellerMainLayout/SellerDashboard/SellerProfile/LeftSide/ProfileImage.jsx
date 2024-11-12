@@ -1,45 +1,54 @@
-import React from 'react';
-import { FaRegImages } from 'react-icons/fa';
-import { FadeLoader } from 'react-spinners';
+import { useState } from "react";
+import { FadeLoader } from "react-spinners";
 
-const ProfileImage = ({ imagePreview, loader, handleImageChange }) => {
+const ProfileImage = ({ loader }) => {
+    const [image, setImage] = useState(null);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
-        <div className="w-full p-4 rounded-md">
+        <div className="w-full p-4 bg-red-100 rounded-md">
             <div className="flex justify-center items-center py-3">
-                <label
-                    htmlFor="image-upload"
-                    className="flex justify-center items-center flex-col h-[150px] w-[150px] rounded-full border border-dashed cursor-pointer hover:border-blue-500 border-gray-400 relative"
-                >
-                    {/* Display image preview if available, otherwise show the icon */}
-                    {imagePreview ? (
-                        <img
-                            src={imagePreview}
-                            alt="Image preview"
-                            className="w-full h-full object-cover rounded-full"
-                        />
+                {
+                    image ? (
+                        <label htmlFor="" className="h-[130px] w-[130px] rounded-full overflow-hidden relative cursor-pointer border-2 border-blue-500">
+                            <img
+                                src={image}
+                                alt="Profile Preview"
+                                className="w-full h-full object-cover rounded-full shadow-md"
+                            />
+                            {loader &&
+                                <div className="absolute left-0 top-0 w-full h-full bg-blue-500 opacity-70 flex justify-center items-center z-20 rounded-full">
+                                    <FadeLoader color="white" />
+                                </div>
+                            }
+                        </label>
                     ) : (
-                        <span>
-                            <FaRegImages size={30} className="text-gray-400" />
-                        </span>
-                    )}
-                    <span className="mt-2">Select an image</span>
-
-                    {/* Show loader if image is being processed */}
-                    {loader && (
-                        <div className="bg-slate-600 absolute left-0 top-0 w-full h-full opacity-70 flex justify-center items-center rounded-full z-20">
-                            <FadeLoader color="#36d7b7" />
-                        </div>
-                    )}
-
-                    {/* Hidden input to allow image selection */}
-                    <input
-                        type="file"
-                        id="image-upload"
-                        className="absolute opacity-0 cursor-pointer w-full h-full top-0 left-0"
-                        accept="image/*"
-                        onChange={handleImageChange} // Handle file selection
-                    />
-                </label>
+                        <label className="flex justify-center items-center flex-col h-[130px] w-[130px] border-blue-400 rounded-full cursor-pointer border-dashed hover:border-2 hover:border-blue-600">
+                            <span>Select an image</span>
+                            <input
+                                type="file"
+                                id="img"
+                                className="hidden"
+                                onChange={handleImageChange}
+                            />
+                            {loader &&
+                                <div className="absolute left-0 top-0 w-full h-full bg-blue-500 opacity-70 flex justify-center items-center z-20 rounded-full">
+                                    <FadeLoader color="white" />
+                                </div>
+                            }
+                        </label>
+                    )
+                }
             </div>
         </div>
     );
