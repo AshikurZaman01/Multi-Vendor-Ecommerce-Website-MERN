@@ -35,6 +35,7 @@ import SellerOrders from './Components/Views/Auth/SellerDashboard/SellerMainLayo
 import SellerPayments from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/SellerPayments/SellerPayments';
 import ChatWithCustomers from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/ChatWithCustomer/ChatWithCustomers';
 import ChatWithSupport from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/ChatWithSupport/ChatWithSupport';
+import SellerPro from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/SellerProfile/SellerPro';
 
 const router = createBrowserRouter([
   {
@@ -122,6 +123,8 @@ const router = createBrowserRouter([
   {
     path: "/sellerMainLayout",
     element: <SellerMainLayout></SellerMainLayout>,
+    role: "seller",
+    status: "active",
     children: [
       {
         path: "",
@@ -145,19 +148,36 @@ const router = createBrowserRouter([
       },
       {
         path: "sellerOrders",
-        element: <SellerOrders />
+        element: <SellerOrders />,
+        role: "seller",
+        status: ["active", "deactive"],
       },
       {
         path: "sellerPayments",
-        element: <SellerPayments />
+        element: <SellerPayments />,
+        role: "seller",
+        status: "active",
       },
       {
+        //seller to customer
         path: "chatCustomers",
-        element: <ChatWithCustomers />
+        element: <ChatWithCustomers />,
+        status: "active"
       },
       {
+        path: "chatCustomers/:customerID",
+        element: <ChatWithCustomers />,
+        status: "active"
+      },
+      {
+        // chat support
         path: "chatSupport",
-        element: <ChatWithSupport />
+        element: <ChatWithSupport />,
+        ability: ['active', 'deactive', 'pending']
+      },
+      {
+        path: "sellerProfile",
+        element: <SellerPro />,
       }
     ]
   }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaBars, FaHome, FaTimes } from 'react-icons/fa';
-import { MdOutlinePayment, MdOutlineSupportAgent } from 'react-icons/md';
+import { MdOutlineAccountCircle, MdOutlinePayment, MdOutlineSupportAgent } from 'react-icons/md';
 import { RiCustomerServiceFill } from 'react-icons/ri';
 import SellerLogout from './SellerLogout';
 import SellerNav from './SellerNav';
@@ -20,7 +20,7 @@ const SellerSidebar = () => {
         { id: 6, path: 'sellerPayments', name: 'Payment', icon: <MdOutlinePayment /> },
         { id: 7, path: 'chatCustomers', name: 'Chat With Customers', icon: <RiCustomerServiceFill /> },
         { id: 8, path: 'chatSupport', name: 'Chat With Support', icon: <MdOutlineSupportAgent /> },
-
+        { id: 9, path: 'sellerProfile', name: 'Profile', icon: <MdOutlineAccountCircle /> },
     ];
 
     const [isOpen, setIsOpen] = useState(false);
