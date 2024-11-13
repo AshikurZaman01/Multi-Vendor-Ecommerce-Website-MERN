@@ -24,14 +24,13 @@ export const sellerRegister = createAsyncThunk(
     'auth/sellerRegister',
     async (info, { rejectWithValue, fulfillWithValue }) => {
         try {
-
             const { data } = await baseURL.post('/auth/sellerRegister', info, {
                 withCredentials: true
             });
-
             if (data.success) {
                 toast.success(data.message);
             }
+            localStorage.setItem('accessToken', data.token)
             return fulfillWithValue(data);
 
         } catch (error) {
@@ -45,6 +44,31 @@ export const sellerRegister = createAsyncThunk(
         }
     }
 );
+
+export const sellerLogin = createAsyncThunk("auth/sellerLogin", async (info, { rejectWithValue, fulfillWithValue }) => {
+
+    try {
+        const { data } = await baseURL.post('/auth/sellerLogin', info, {
+            withCredentials: true
+        })
+
+        if (data.success) {
+            toast.success(data.message);
+        }
+
+        localStorage.setItem('accessToken', data.token)
+        return fulfillWithValue(data);
+    } catch (error) {
+        const errorMessage = error.response
+            ? error.response.data?.message || error.response.data || 'An error occurred on the server.'
+            : error.message || 'Something went wrong. Please try again later.';
+
+        console.error('Login Error:', errorMessage);
+        toast.error(errorMessage);
+        return rejectWithValue(errorMessage);
+    }
+
+})
 
 const authSlice = createSlice({
     name: "auth",
@@ -76,7 +100,40 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.errorMessage = payload;
                 state.successMessage = null;
-            });
+            })
+
+            .addCase(sellerRegister.pending, (state) => {
+                state.isLoading = true;
+                state.errorMessage = null;
+                state.successMessage = null;
+            })
+            .addCase(sellerRegister.fulfilled, (state, { payload }) => {
+                state.isLoading = false;
+                state.errorMessage = null;
+                state.successMessage = payload.message;
+            })
+            .addCase(sellerRegister.rejected, (state, { payload }) => {
+                state.isLoading = false;
+                state.errorMessage = payload;
+                state.successMessage = null;
+            })
+
+            .addCase(sellerLogin.pending, (state) => {
+                state.isLoading = true;
+                state.errorMessage = null;
+                state.successMessage = null;
+            })
+
+            .addCase(sellerLogin.fulfilled, (state, { payload }) => {
+                state.isLoading = false;
+                state.errorMessage = null;
+                state.successMessage = payload.message;
+            })
+            .addCase(sellerLogin.rejected, (state, { payload }) => {
+                state.isLoading = false;
+                state.errorMessage = payload;
+                state.successMessage = null;
+            })
 
     }
 });

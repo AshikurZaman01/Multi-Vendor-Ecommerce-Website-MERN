@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { Link, useNavigate } from "react-router-dom";
 import SocialLoginButtons from "../SocialLoginButtons/SocialLoginButtons";
+import { useDispatch } from "react-redux";
+import { sellerLogin } from "../../../../Redux/features/authSlice";
 
 const LoginForm = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [user, setUser] = useState({
         email: '',
         password: '',
@@ -21,7 +27,10 @@ const LoginForm = () => {
         const { email, password } = user;
 
         console.log({ email, password });
-        // Handle login logic here, e.g., calling an API endpoint
+
+        dispatch(sellerLogin({ email, password }));
+        navigate('/');
+
     };
 
     return (

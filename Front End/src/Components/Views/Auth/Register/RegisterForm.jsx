@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLoginButtons from "../SocialLoginButtons/SocialLoginButtons";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSpinner } from "react-icons/fa";
 import { sellerRegister } from "../../../../Redux/features/authSlice";
 
 const RegisterForm = () => {
+
     const dispatch = useDispatch();
     const { isLoading, error } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
         name: '',
@@ -40,6 +42,7 @@ const RegisterForm = () => {
         }
         console.log(user);
         dispatch(sellerRegister({ name, email, password }));
+        navigate('/login');
 
         setUser({
             name: '',
