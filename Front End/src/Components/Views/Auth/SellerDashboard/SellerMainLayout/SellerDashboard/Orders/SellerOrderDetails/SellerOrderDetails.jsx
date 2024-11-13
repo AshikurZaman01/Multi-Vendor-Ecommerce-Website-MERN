@@ -45,7 +45,7 @@ const SellerOrderDetails = () => {
                 {/* Product List */}
                 <OrderProdList />
 
-               
+
 
                 {/* Total Price */}
                 <div className="flex justify-end mt-8">

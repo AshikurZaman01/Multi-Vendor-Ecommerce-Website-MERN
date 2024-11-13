@@ -162,8 +162,8 @@ const router = createBrowserRouter([
         status: ["active", "deactive"],
       },
       {
-        path : "sellerOrder/:id",
-        element: <SellerOrderDetails/>
+        path: "sellerOrder/:id",
+        element: <SellerOrderDetails />
       },
       {
         path: "sellerPayments",

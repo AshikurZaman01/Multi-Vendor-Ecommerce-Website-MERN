@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SocialLoginButtons from "../SocialLoginButtons/SocialLoginButtons";
+import { useDispatch, useSelector } from "react-redux";
+import { FaSpinner } from "react-icons/fa";
+import { sellerRegister } from "../../../../Redux/features/authSlice";
 
 const RegisterForm = () => {
+    const dispatch = useDispatch();
+    const { isLoading, error } = useSelector((state) => state.auth);
 
     const [user, setUser] = useState({
         name: '',
         email: '',
         password: '',
         confirmPassword: '',
-        gender: '',
     });
     const [passwordStrength, setPasswordStrength] = useState('');
 
@@ -27,14 +31,23 @@ const RegisterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         const { name, email, password, confirmPassword } = user;
 
         if (password !== confirmPassword) {
             alert("Passwords do not match!");
             return;
         }
+        console.log(user);
+        dispatch(sellerRegister({ name, email, password }));
 
-        console.log({ name, email, password });
+        setUser({
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+        })
+
     };
 
     const handleInputChange = (e) => {
@@ -61,7 +74,6 @@ const RegisterForm = () => {
                     onChange={handleInputChange}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="Your Name"
-                    required
                 />
             </div>
 
@@ -76,7 +88,6 @@ const RegisterForm = () => {
                     onChange={handleInputChange}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="Your Email"
-                    required
                 />
             </div>
 
@@ -91,30 +102,11 @@ const RegisterForm = () => {
                     onChange={handleInputChange}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="Your Password"
-                    required
                 />
                 <div className="mt-2">
                     <div
-                        className={`h-2 rounded ${passwordStrength === 'Strong'
-                            ? 'bg-green-500'
-                            : passwordStrength === 'Moderate'
-                                ? 'bg-yellow-500'
-                                : passwordStrength === 'Weak'
-                                    ? 'bg-orange-500'
-                                    : 'bg-red-500'
-                            }`}
-                        style={{
-                            width:
-                                passwordStrength === ''
-                                    ? '0%'
-                                    : passwordStrength === 'Too short'
-                                        ? '25%'
-                                        : passwordStrength === 'Weak'
-                                            ? '50%'
-                                            : passwordStrength === 'Moderate'
-                                                ? '75%'
-                                                : '100%',
-                        }}
+                        className={`h-2 rounded ${passwordStrength === 'Strong' ? 'bg-green-500' : passwordStrength === 'Moderate' ? 'bg-yellow-500' : passwordStrength === 'Weak' ? 'bg-orange-500' : 'bg-red-500'}`}
+                        style={{ width: passwordStrength === '' ? '0%' : passwordStrength === 'Too short' ? '25%' : passwordStrength === 'Weak' ? '50%' : passwordStrength === 'Moderate' ? '75%' : '100%' }}
                     ></div>
                     <p className="text-sm text-gray-600">{passwordStrength}</p>
                 </div>
@@ -133,33 +125,17 @@ const RegisterForm = () => {
                     placeholder="Confirm Your Password"
                     required
                 />
+                {user.password !== user.confirmPassword && <p className="text-red-500 text-sm">Passwords do not match!</p>}
             </div>
-
-            <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gender">
-                    Gender
-                </label>
-                <select
-                    id="gender"
-                    value={user.gender}
-                    onChange={handleInputChange}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    required
-                >
-                    <option value="" disabled>Select your gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
-
-
 
             <button
                 type="submit"
                 className="bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
             >
-                Register
+                {isLoading ? <FaSpinner className="animate-spin mx-auto" /> : "Register"}
             </button>
+
+            {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}
 
             <div className="mt-4 text-center">
                 <p className="text-gray-600 text-sm">
@@ -178,11 +154,9 @@ const RegisterForm = () => {
                 <div className="w-2/5 bg-slate-700 h-[1px]"></div>
             </div>
 
-            <SocialLoginButtons></SocialLoginButtons>
-
-
+            <SocialLoginButtons />
         </form>
-    )
-}
+    );
+};
 
-export default RegisterForm
+export default RegisterForm;
