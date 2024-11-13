@@ -1,9 +1,19 @@
-import { FaEdit } from 'react-icons/fa'
-import { FaTrashCan } from 'react-icons/fa6'
-import { IoEyeOutline } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
+import { FaEdit } from 'react-icons/fa';
+import { FaTrashCan } from 'react-icons/fa6';
+import { IoEyeOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
-const ProdcutList = () => {
+const ProductList = () => {
+
+    // Example product data with id dynamically assigned
+    const products = [
+        { id: 1, name: 'Tshirt', category: 'Cloths', price: 500, discount: '30%', stock: 350, imageUrl: 'https://img.freepik.com/free-vector/simple-flat-i-heart-you-valentine-s-day-t-shirt_742173-14411.jpg' },
+        { id: 2, name: 'Jeans', category: 'Cloths', price: 600, discount: '25%', stock: 200, imageUrl: 'https://img.freepik.com/free-vector/simple-flat-i-heart-you-valentine-s-day-t-shirt_742173-14411.jpg' },
+        { id: 3, name: 'Shoes', category: 'Footwear', price: 1000, discount: '20%', stock: 150, imageUrl: 'https://img.freepik.com/free-vector/simple-flat-i-heart-you-valentine-s-day-t-shirt_742173-14411.jpg' },
+        { id: 4, name: 'Shirt', category: 'Cloths', price: 700, discount: '15%', stock: 250, imageUrl: 'https://img.freepik.com/free-vector/simple-flat-i-heart-you-valentine-s-day-t-shirt_742173-14411.jpg' },
+        // Add more products here...
+    ];
+
     return (
         <div className="max-h-[400px] overflow-y-auto scrollbar-hide rounded-lg shadow-lg p-4">
             <table className="w-full text-center bg-indigo-50 rounded-lg">
@@ -20,40 +30,29 @@ const ProdcutList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
-                        <tr
-                            key={index}
-                            className="hover:bg-indigo-100 transition duration-200"
-                        >
+                    {products.map((product, index) => (
+                        <tr key={product.id} className="hover:bg-indigo-100 transition duration-200">
                             <td className="px-6 py-4 border-b border-indigo-200">{index + 1}</td>
                             <td className="px-6 py-4 border-b border-indigo-200">
                                 <img
-                                    src="https://img.freepik.com/free-vector/simple-flat-i-heart-you-valentine-s-day-t-shirt_742173-14411.jpg"
-                                    alt="Category"
+                                    src={product.imageUrl}
+                                    alt={product.name}
                                     className="h-16 w-16 rounded-full border-2 border-indigo-300"
                                 />
                             </td>
-                            <td className="px-6 py-4 border-b border-indigo-200">Tshirt</td>
-
-                            <td className="px-6 py-4 border-b border-indigo-200">Cloths</td>
-
-                            <td className="px-6 py-4 border-b border-indigo-200">500</td>
-
-                            <td className="px-6 py-4 border-b border-indigo-200">30%</td>
-
-                            <td className="px-6 py-4 border-b border-indigo-200">350</td>
-
+                            <td className="px-6 py-4 border-b border-indigo-200">{product.name}</td>
+                            <td className="px-6 py-4 border-b border-indigo-200">{product.category}</td>
+                            <td className="px-6 py-4 border-b border-indigo-200">{product.price}</td>
+                            <td className="px-6 py-4 border-b border-indigo-200">{product.discount}</td>
+                            <td className="px-6 py-4 border-b border-indigo-200">{product.stock}</td>
                             <td className="px-6 py-4 border-b border-indigo-200">
-
-                                <div className='flex justify-center items-center gap-2'>
-                                    <Link to="#" className="mr-2 text-indigo-500 hover:text-indigo-700">
+                                <div className="flex justify-center items-center gap-2">
+                                    <Link to={`/sellerMainLayout/editProduct/${product.id}`} className="mr-2 text-indigo-500 hover:text-indigo-700">
                                         <FaEdit />
                                     </Link>
-
                                     <Link to="#" className="ml-2 text-red-500 hover:text-red-700">
                                         <FaTrashCan />
                                     </Link>
-
                                     <Link to="#" className="ml-2 text-red-500 hover:text-red-700">
                                         <IoEyeOutline />
                                     </Link>
@@ -64,7 +63,7 @@ const ProdcutList = () => {
                 </tbody>
             </table>
         </div>
-    )
-}
+    );
+};
 
-export default ProdcutList
+export default ProductList;

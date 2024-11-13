@@ -36,6 +36,7 @@ import SellerPayments from './Components/Views/Auth/SellerDashboard/SellerMainLa
 import ChatWithCustomers from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/ChatWithCustomer/ChatWithCustomers';
 import ChatWithSupport from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/ChatWithSupport/ChatWithSupport';
 import SellerPro from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/SellerProfile/SellerPro';
+import EditProduct from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/AllProducts/EditProduct/EditProduct';
 
 const router = createBrowserRouter([
   {
@@ -138,9 +139,16 @@ const router = createBrowserRouter([
         path: "addProducts",
         element: <Addproducts />
       },
+
       {
         path: "allProducts",
-        element: <AllProducts />
+        element: <AllProducts />,
+        role: "seller",
+        status: "active",
+      },
+      {
+        path: "editProduct/:id",
+        element: <EditProduct />,
       },
       {
         path: "discountProducts",
