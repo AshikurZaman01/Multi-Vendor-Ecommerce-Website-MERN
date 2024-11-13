@@ -28,14 +28,14 @@ const SellerOrderList = () => {
                         {/* View Button */}
                         <div className="text-center">
                             <Link
-                                to={`/admin/orderDetails/3`}
+                                to={`/sellerMainLayout/sellerOrder/3`}
                                 className="text-blue-600 hover:text-blue-800 font-medium"
                             >
                                 View
                             </Link>
                         </div>
 
-                      
+
                     </div>
                 </div>
             </div>

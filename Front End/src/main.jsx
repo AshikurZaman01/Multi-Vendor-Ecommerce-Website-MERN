@@ -37,6 +37,7 @@ import ChatWithCustomers from './Components/Views/Auth/SellerDashboard/SellerMai
 import ChatWithSupport from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/ChatWithSupport/ChatWithSupport';
 import SellerPro from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/SellerProfile/SellerPro';
 import EditProduct from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/AllProducts/EditProduct/EditProduct';
+import SellerOrderDetails from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/Orders/SellerOrderDetails/SellerOrderDetails';
 
 const router = createBrowserRouter([
   {
@@ -159,6 +160,10 @@ const router = createBrowserRouter([
         element: <SellerOrders />,
         role: "seller",
         status: ["active", "deactive"],
+      },
+      {
+        path : "sellerOrder/:id",
+        element: <SellerOrderDetails/>
       },
       {
         path: "sellerPayments",
