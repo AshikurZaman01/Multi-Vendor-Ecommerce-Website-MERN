@@ -38,24 +38,44 @@ import ChatWithSupport from './Components/Views/Auth/SellerDashboard/SellerMainL
 import SellerPro from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/SellerProfile/SellerPro';
 import EditProduct from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/AllProducts/EditProduct/EditProduct';
 import SellerOrderDetails from './Components/Views/Auth/SellerDashboard/SellerMainLayout/SellerDashboard/Orders/SellerOrderDetails/SellerOrderDetails';
+import ProtectedRoute from './Components/Pages/ProtectedRoute/ProtectedRoute';
 
 const router = createBrowserRouter([
+  // Public Routes
   {
     path: "/",
     element: <Roots />,
     children: [
-      {
-        path: "/",
-        element: <Home />
-      },
-      {
-        path: "/login",
-        element: <Login />
-      },
-      {
-        path: "/register",
-        element: <Register />
-      },
+      { path: "/", element: <Home /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+    ],
+  },
+
+
+  // Admin Routes
+  {
+    path: "/adminLogin",
+    element: <AdminLogin />,
+  },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute allowedRoles={["admin"]}>
+        <AdminMainLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      { path: "", element: <Navigate to={'dashboard'} replace /> },
+      { path: "dashboard", element: <AdminDashboard /> },
+      { path: 'orders', element: <Orders /> },
+      { path: "orderDetails/:id", element: <OrdersDetails /> },
+      { path: "category", element: <Category /> },
+      { path: "seller", element: <AdminSeller /> },
+      { path: "paymentRequest", element: <PaymentRequest /> },
+      { path: "deactiveSeller", element: <DeactiveSeller /> },
+      { path: 'sellerRequests', element: <SellerRequests /> },
+      { path: 'liveChat', element: <LiveChat /> }
     ]
   },
 
@@ -65,137 +85,50 @@ const router = createBrowserRouter([
     element: <Seller />
   },
 
-
-
-
-
-
-  {
-    path: "/adminLogin",
-    element: <AdminLogin />,
-  },
-  {
-    path: "/admin",
-    element: <AdminMainLayout></AdminMainLayout>,
-    children: [
-      {
-        path: "dashboard",
-        element: <AdminDashboard />
-      },
-      {
-        path: "orders",
-        element: <Orders />
-      },
-      {
-        path: "orderDetails/:id",
-        element: <OrdersDetails />
-      },
-      {
-        path: "category",
-        element: <Category />
-      },
-      {
-        path: "seller",
-        element: <AdminSeller />
-      },
-      {
-        path: "paymentRequest",
-        element: <PaymentRequest />
-      },
-      {
-        path: "deactiveSeller",
-        element: <DeactiveSeller />
-      },
-      {
-        path: 'sellerRequests',
-        element: <SellerRequests />
-      },
-      {
-        path: 'liveChat',
-        element: <LiveChat />
-      }
-    ]
-  },
-
-
-  {
-    path: "/sellerLogin",
-    element: <SellerLogin />,
-  },
+  { path: "/sellerLogin", element: <SellerLogin />, },
   {
     path: "/sellerMainLayout",
-    element: <SellerMainLayout></SellerMainLayout>,
-    role: "seller",
-    status: "active",
+    element: (
+      <ProtectedRoute allowedRoles={["seller"]}>
+        <SellerMainLayout />
+      </ProtectedRoute>
+    ),
     children: [
+      { path: "", element: <Navigate to={'dashboard'} replace /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "addProducts", element: <Addproducts /> },
       {
-        path: "",
-        element: <Navigate to="dashboard" replace />
-      },
-      {
-        path: "dashboard",
-        element: <Dashboard />
-      },
-      {
-        path: "addProducts",
-        element: <Addproducts />
-      },
-
-      {
-        path: "allProducts",
-        element: <AllProducts />,
-        role: "seller",
+        path: "allProducts", element: <AllProducts />,
         status: "active",
       },
-      {
-        path: "editProduct/:id",
-        element: <EditProduct />,
-      },
-      {
-        path: "discountProducts",
-        element: <DiscountProdcuts />
-      },
+      { path: "discountProducts", element: <DiscountProdcuts /> },
+      { path: "editProduct/:id", element: <EditProduct /> },
       {
         path: "sellerOrders",
         element: <SellerOrders />,
-        role: "seller",
         status: ["active", "deactive"],
       },
-      {
-        path: "sellerOrder/:id",
-        element: <SellerOrderDetails />
-      },
-      {
-        path: "sellerPayments",
-        element: <SellerPayments />,
-        role: "seller",
-        status: "active",
-      },
+      { path: "sellerOrder/:id", element: <SellerOrderDetails /> },
+      { path: "sellerPayments", element: <SellerPayments />, },
       {
         //seller to customer
-        path: "chatCustomers",
-        element: <ChatWithCustomers />,
-        status: "active"
+        path: "chatCustomers", element: <ChatWithCustomers />,
       },
-      {
-        path: "chatCustomers/:customerID",
-        element: <ChatWithCustomers />,
-        status: "active"
-      },
+      { path: "chatCustomers/:customerID", element: <ChatWithCustomers />, },
       {
         // chat support
         path: "chatSupport",
         element: <ChatWithSupport />,
-        ability: ['active', 'deactive', 'pending']
       },
-      {
-        path: "sellerProfile",
-        element: <SellerPro />,
-        role: 'seller',
-        status: 'active'
-      }
+      { path: "sellerProfile", element: <SellerPro />, }
     ]
   }
+
+
+
+
+
+
 
 
 

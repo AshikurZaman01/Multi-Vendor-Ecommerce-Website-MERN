@@ -8,6 +8,7 @@ const Roots = () => {
     const dispatch = useDispatch();
     const { token } = useSelector((state) => state.auth);
 
+
     useEffect(() => {
         if (token) {
             dispatch(getUserInfo(token))
