@@ -1,16 +1,37 @@
 import { CiSquarePlus } from "react-icons/ci";
 
-const AddCategory = () => {
+const AddCategory = ({ category, setCategory, handleSubmit }) => {
+
+    const handleImageChange = (e) => {
+
+        const file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const imagePreview = document.getElementById("imagePreview");
+                const imagePlaceholder = document.getElementById("imagePlaceholder");
+                imagePreview.src = event.target.result;
+                imagePreview.classList.remove("hidden");
+                imagePlaceholder.classList.add("hidden");
+            };
+            reader.readAsDataURL(file);
+            setCategory({ ...category, image: file }); // Set the image file in the category state
+        }
+    };
+
     return (
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 mt-10 sm:max-w-lg lg:max-w-2xl">
             <div className="text-center py-2 text-blue-600 font-semibold text-xl">
                 <h1>Add New Category</h1>
             </div>
 
-            <form className="space-y-5 mt-5">
+            <form className="space-y-5 mt-5" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-y-2">
                     <label htmlFor="categoryName" className="text-blue-600 text-sm font-semibold">Category Name</label>
                     <input
+                        value={category.name}
+                        onChange={(e) => setCategory({ ...category, name: e.target.value })}
                         type="text"
                         name="categoryName"
                         id="categoryName"
@@ -34,20 +55,7 @@ const AddCategory = () => {
                             id="categoryImage"
                             name="categoryImage"
                             className="hidden"
-                            onChange={(e) => {
-                                const file = e.target.files[0];
-                                if (file) {
-                                    const reader = new FileReader();
-                                    reader.onload = (event) => {
-                                        const imagePreview = document.getElementById("imagePreview");
-                                        const imagePlaceholder = document.getElementById("imagePlaceholder");
-                                        imagePreview.src = event.target.result;
-                                        imagePreview.classList.remove("hidden");
-                                        imagePlaceholder.classList.add("hidden");
-                                    };
-                                    reader.readAsDataURL(file);
-                                }
-                            }}
+                            onChange={handleImageChange} // Update the image selection handler
                         />
                     </div>
                 </div>

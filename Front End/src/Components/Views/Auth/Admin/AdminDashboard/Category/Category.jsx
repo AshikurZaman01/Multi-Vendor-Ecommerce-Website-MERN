@@ -9,7 +9,15 @@ const Category = () => {
     const [searchData, setSearchData] = useState("");
     const [perPageItems, setPerPageItems] = useState(5);
 
-    console.log(searchData);
+    const [category, setCategory] = useState({
+        name: '',
+        image: ''
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(category);
+    }
 
     return (
         <div className="px-4 lg:px-8 py-6 bg-gray-50 min-h-screen">
@@ -26,7 +34,7 @@ const Category = () => {
 
                 {/* Add Category Section */}
                 <div className="w-full lg:w-5/12 bg-blue-100 p-6 rounded-lg shadow-lg order-1 md:order-2 ">
-                    <AddCategory />
+                    <AddCategory category={category} setCategory={setCategory} handleSubmit={handleSubmit} />
                 </div>
             </div>
         </div>
