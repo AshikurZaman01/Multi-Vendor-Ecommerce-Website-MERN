@@ -1,6 +1,7 @@
 import { CiSquarePlus } from "react-icons/ci";
+import { FaSpinner } from "react-icons/fa";
 
-const AddCategory = ({ category, setCategory, handleSubmit }) => {
+const AddCategory = ({ category, setCategory, handleSubmit, loader }) => {
 
     const handleImageChange = (e) => {
 
@@ -48,6 +49,7 @@ const AddCategory = ({ category, setCategory, handleSubmit }) => {
                             className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center overflow-hidden border border-dashed border-blue-600 cursor-pointer transition duration-300 hover:bg-gray-200"
                         >
                             <img id="imagePreview" src="" alt="Category Preview" className="w-full h-full object-cover hidden" />
+
                             <span id="imagePlaceholder" className="text-blue-600 text-sm">Select Image</span>
                         </label>
                         <input
@@ -65,8 +67,13 @@ const AddCategory = ({ category, setCategory, handleSubmit }) => {
                         type="submit"
                         className="w-full bg-blue-600 text-white py-2 rounded-md font-medium flex items-center justify-center gap-2 transition duration-300 hover:bg-blue-700"
                     >
-                        Add Category
-                        <CiSquarePlus size={20} />
+                        {loader ? <FaSpinner className="animate-spin mx-auto" /> :
+                            <div className="flex  items-center gap-2">
+                                Add Category
+                                <CiSquarePlus size={20} />
+                            </div>
+                        }
+
                     </button>
                 </div>
             </form>

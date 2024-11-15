@@ -5,9 +5,12 @@ import AddCategory from "./AddCategory";
 import CategoryList from "./CategoryList";
 
 const Category = () => {
+
     const [currentPage, setCurrentPage] = useState(1);
     const [searchData, setSearchData] = useState("");
     const [perPageItems, setPerPageItems] = useState(5);
+
+    const loader = false;
 
     const [category, setCategory] = useState({
         name: '',
@@ -29,13 +32,16 @@ const Category = () => {
                         <CategoryPerPage setPerPageItems={setPerPageItems} />
                         <CategorySearch searchData={searchData} setSearchData={setSearchData} />
                     </div>
+
                     <CategoryList />
+
                 </div>
 
                 {/* Add Category Section */}
                 <div className="w-full lg:w-5/12 bg-blue-100 p-6 rounded-lg shadow-lg order-1 md:order-2 ">
-                    <AddCategory category={category} setCategory={setCategory} handleSubmit={handleSubmit} />
+                    <AddCategory category={category} setCategory={setCategory} handleSubmit={handleSubmit} loader={loader} />
                 </div>
+
             </div>
         </div>
     );
