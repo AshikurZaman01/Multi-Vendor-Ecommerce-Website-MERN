@@ -82,7 +82,6 @@ export const getUserInfo = createAsyncThunk("auth/getUserInfo", async (_, { reje
             },
             withCredentials: true,
         });
-        console.log(data);
         return fulfillWithValue(data);
 
     } catch (error) {
@@ -109,7 +108,6 @@ const returnRole = (token) => {
         }
     }
 }
-
 
 const authSlice = createSlice({
     name: "auth",

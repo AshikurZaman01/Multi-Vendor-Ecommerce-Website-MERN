@@ -1,13 +1,19 @@
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const Home = () => {
 
-    
+    const { role } = useSelector((state) => state.auth);
+    console.log(role);
 
-    return (
-        <div>
-            Home
-        </div>
-    );
+    if (role === 'seller') {
+        return <Navigate to={'/sellerMainLayout'} replace />
+    } else if (role === "admin") {
+        return <Navigate to={'/admin'} replace />
+    } else {
+        return <Navigate to={'/login'} replace />
+    }
+
 }
 
 export default Home;
