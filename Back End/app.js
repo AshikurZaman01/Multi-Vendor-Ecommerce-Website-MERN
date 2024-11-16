@@ -5,9 +5,11 @@ dotenv.config();
 const cookieParser = require('cookie-parser');
 const DBConnection = require('./config/DBconnection');
 const { notFound, defaultErrorHandler } = require('./Middlewear/ErrorHandler/errorHandler');
+const cloudinaryConfig = require('./config/CloudinaryConfig');
 const app = express();
 const port = process.env.PORT;
 
+cloudinaryConfig();
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true,

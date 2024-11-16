@@ -3,8 +3,13 @@ import CategoryPerPage from "./CategoryPerPage";
 import CategorySearch from "./CategorySearch";
 import AddCategory from "./AddCategory";
 import CategoryList from "./CategoryList";
+import { useDispatch } from "react-redux";
+import { addCategory } from "../../../../../../Redux/features/categorySlice";
 
 const Category = () => {
+
+    const dispatch = useDispatch();
+
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchData, setSearchData] = useState("");
@@ -13,13 +18,25 @@ const Category = () => {
     const loader = false;
 
     const [category, setCategory] = useState({
-        name: '',
-        image: ''
+        categoryImage: '',
+        categoryName: ''
     })
 
-    const handleSubmit = (e) => {
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(category);
+
+        if (!category.categoryName || !category.categoryImage) {
+            alert('Please provide both a category name and an image.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('categoryName', category.categoryName);
+        formData.append('categoryImage', category.categoryImage);
+
+        await dispatch(addCategory(category));
     }
 
     return (
