@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const categorySchema = new mongoose.Schema({
     categoryName: {
         type: String,
         required: true,
     },
-    categoryimage: {
+    categoryImage: {
         type: String,
         required: true,
     },
@@ -13,12 +13,11 @@ const categorySchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-
-}, { timestamps: true })
+}, { timestamps: true });
 
 categorySchema.index({
     name: "text",
-})
+});
 
 const CategoryModel = mongoose.model("Category", categorySchema);
 module.exports = CategoryModel;
