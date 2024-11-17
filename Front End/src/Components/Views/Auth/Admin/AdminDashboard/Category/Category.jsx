@@ -4,7 +4,7 @@ import CategorySearch from "./CategorySearch";
 import AddCategory from "./AddCategory";
 import CategoryList from "./CategoryList";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategory, msgClear } from "../../../../../../Redux/features/categorySlice";
+import { addCategory, getCategories, msgClear } from "../../../../../../Redux/features/categorySlice";
 import toast from "react-hot-toast";
 
 const Category = () => {
@@ -16,6 +16,7 @@ const Category = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchData, setSearchData] = useState("");
     const [perPageItems, setPerPageItems] = useState(5);
+
 
 
     const [category, setCategory] = useState({
@@ -73,6 +74,18 @@ const Category = () => {
         }
     };
 
+
+    useEffect(() => {
+
+        const obj = {
+            perPage: parseInt(perPageItems),
+            page: parseInt(currentPage),
+            searchValue: searchData
+        }
+
+        dispatch(getCategories(obj));
+
+    }, [currentPage, perPageItems, searchData, dispatch]);
 
     return (
         <div className="px-4 lg:px-8 py-6 bg-gray-50 min-h-screen">

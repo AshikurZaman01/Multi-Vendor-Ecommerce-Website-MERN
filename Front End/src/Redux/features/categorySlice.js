@@ -4,10 +4,6 @@ import baseURL from "../../baseURL/baseURL";
 
 export const addCategory = createAsyncThunk("category/addCategory", async (formData, { rejectWithValue, fulfillWithValue }) => {
     try {
-
-
-        console.log("formData : ", formData)
-
         const { data } = await baseURL.post('admin/addCategory', formData, {
             withCredentials: true,
             headers: {
@@ -18,8 +14,37 @@ export const addCategory = createAsyncThunk("category/addCategory", async (formD
         return fulfillWithValue(data);
 
     } catch (error) {
-        console.log("error : ", error.message)
-        return rejectWithValue(error.response.data.message)
+        const errorMessage = error.response ? error.response.data?.message || error.response.data || 'An error occurred on the server.'
+            : error.message || 'Something went wrong. Please try again later.';
+
+        console.error('get user info Error:', errorMessage);
+        return rejectWithValue(errorMessage);
+    }
+})
+
+export const getCategories = createAsyncThunk("category/getCategories", async ({ perPage, page, searchValue }, { rejectWithValue, fulfillWithValue }) => {
+
+    try {
+
+        console.log("from slice PerPage : ", perPage);
+        console.log("from slice Page : ", page);
+        console.log("from slice searchValue : ", searchValue);
+
+        const { data } = await baseURL.get(`admin/getCategory?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`,
+            {
+                withCredentials: true,
+            })
+
+        console.log(data);
+
+        return fulfillWithValue(data);
+
+    } catch (error) {
+        const errorMessage = error.response ? error.response.data?.message || error.response.data || 'An error occurred on the server.'
+            : error.message || 'Something went wrong. Please try again later.';
+
+        console.error('get user info Error:', errorMessage);
+        return rejectWithValue(errorMessage);
     }
 })
 
