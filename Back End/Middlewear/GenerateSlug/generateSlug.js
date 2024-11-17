@@ -10,9 +10,7 @@ const generateSlug = (name) => {
     if (name.length > 50) {
         throw new Error('categoryName must be at most 50 characters long');
     }
-    if (!/^[a-zA-Z0-9\s]+$/.test(name)) {
-        throw new Error('categoryName can only contain letters, numbers, and spaces');
-    }
+   
 
     return name
         .toLowerCase()

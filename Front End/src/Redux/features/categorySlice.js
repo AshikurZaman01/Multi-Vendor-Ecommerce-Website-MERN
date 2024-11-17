@@ -7,14 +7,15 @@ export const addCategory = createAsyncThunk("category/addCategory", async (formD
 
 
         console.log("formData : ", formData)
-    
+
         const { data } = await baseURL.post('admin/addCategory', formData, {
             withCredentials: true,
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
-        console.log("data : ", data)
+
+        return fulfillWithValue(data);
 
     } catch (error) {
         console.log("error : ", error.message)
@@ -32,6 +33,13 @@ const categorySlice = createSlice({
         errorMsg: null,
     },
 
+    reducers: {
+        msgClear: (state) => {
+            state.successMsg = null;
+            state.errorMsg = null;
+        }
+    },
+
     extraReducers: (builder) => {
         builder
             .addCase(addCategory.pending, (state) => {
@@ -42,15 +50,17 @@ const categorySlice = createSlice({
             .addCase(addCategory.fulfilled, (state, { payload }) => {
                 state.loading = false;
                 state.categories = payload;
-                state.successMsg = payload;
+                state.successMsg = payload.message;
                 state.errorMsg = null;
             })
             .addCase(addCategory.rejected, (state, { payload }) => {
                 state.loading = false;
-                state.errorMsg = payload;
+                state.errorMsg = payload.message;
                 state.successMsg = null;
             })
 
     }
 })
+
+export const { msgClear } = categorySlice.actions;
 export default categorySlice.reducer;

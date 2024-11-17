@@ -52,20 +52,21 @@ const addCategory = async (req, res) => {
                 await newCategory.save();
 
                 return res.status(200).json({
+                    success: true,
                     message: "Category added successfully",
                     data: newCategory
                 });
 
             } catch (uploadError) {
                 console.error("Cloudinary upload error:", uploadError);
-                return res.status(500).send({ message: "Error uploading image to Cloudinary", error: uploadError.message });
+                return res.status(500).send({ success: false, message: "Error uploading image to Cloudinary", error: uploadError.message });
             }
         });
     } catch (error) {
         console.error("Error in adding category: ", error);
+
         return res.status(500).json({
-            message: "Error adding category",
-            error: error.message
+            success: false, message: "Error adding category", error: error.message
         });
     }
 };
