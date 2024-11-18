@@ -8,7 +8,7 @@ const getCategory = async (req, res) => {
 
     try {
 
-        if (searchValue) {
+        if (searchValue && page && perPage) {
             const categories = await CategoryModel.find({
                 $or: [
                     { categoryName: { $regex: searchValue, $options: 'i' } },
@@ -19,7 +19,7 @@ const getCategory = async (req, res) => {
                 .limit(parseInt(perPage))
                 .sort({ createdAt: -1 });
 
-            const totalCategories = await CategoryModel.find({
+            const totalCategory = await CategoryModel.find({
                 $or: [
                     { categoryName: { $regex: searchValue, $options: 'i' } },
                     { categorySlug: { $regex: searchValue, $options: 'i' } }
@@ -30,24 +30,44 @@ const getCategory = async (req, res) => {
                 success: true,
                 message: "Categories Fetched Successfully",
                 categories: categories,
-                totalCategories: totalCategories
+                totalCategory: totalCategory
             })
-        } else {
 
-            const categories = await CategoryModel.find({}).skip(skipPage).limit(parseInt(perPage)).sort({ createdAt: -1 });
+        } else if (searchValue === "" && page && perPage) {
 
-            const totalCategories = await CategoryModel.find({}).countDocuments();
+            const categories = await CategoryModel.find({})
+                .skip(skipPage)
+                .limit(parseInt(perPage))
+                .sort({ createdAt: -1 });
+
+            const totalCategory = await CategoryModel.find({})
+                .countDocuments();
 
             res.status(200).json({
                 success: true,
                 message: "Categories Fetched Successfully",
                 categories: categories,
-                totalCategories: totalCategories
+                totalCategory: totalCategory
+            })
+        }
+        else {
+
+            const categories = await CategoryModel.find({})
+                .skip(skipPage)
+                .limit(parseInt(perPage))
+                .sort({ createdAt: -1 });
+
+            const totalCategory = await CategoryModel.find({})
+                .countDocuments();
+
+            res.status(200).json({
+                success: true,
+                message: "Categories Fetched Successfully",
+                categories: categories,
+                totalCategory: totalCategory
             })
 
         }
-
-
 
     } catch (error) {
         res.status(500).json({

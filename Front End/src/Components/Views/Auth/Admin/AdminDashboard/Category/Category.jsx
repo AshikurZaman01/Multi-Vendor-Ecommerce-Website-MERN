@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CategoryPerPage from "./CategoryPerPage";
 import CategorySearch from "./CategorySearch";
 import AddCategory from "./AddCategory";
-import CategoryList from "./CategoryList";
+import CategoryList from "./CategoryList/CategoryList";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategory, getCategories, msgClear } from "../../../../../../Redux/features/categorySlice";
 import toast from "react-hot-toast";
@@ -10,7 +10,8 @@ import toast from "react-hot-toast";
 const Category = () => {
 
     const dispatch = useDispatch();
-    const { errorMsg, loading, successMsg } = useSelector((state) => state.category)
+    const { errorMsg, loading, successMsg, categories } = useSelector((state) => state.category)
+
 
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -99,7 +100,7 @@ const Category = () => {
                         <CategorySearch searchData={searchData} setSearchData={setSearchData} />
                     </div>
 
-                    <CategoryList />
+                    <CategoryList categories={categories} />
 
                 </div>
 

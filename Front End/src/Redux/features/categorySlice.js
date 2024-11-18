@@ -26,16 +26,10 @@ export const getCategories = createAsyncThunk("category/getCategories", async ({
 
     try {
 
-        console.log("from slice PerPage : ", perPage);
-        console.log("from slice Page : ", page);
-        console.log("from slice searchValue : ", searchValue);
-
         const { data } = await baseURL.get(`admin/getCategory?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`,
             {
                 withCredentials: true,
             })
-
-        console.log(data);
 
         return fulfillWithValue(data);
 
@@ -53,6 +47,7 @@ const categorySlice = createSlice({
 
     initialState: {
         categories: [],
+        totalCategory: 0,
         loading: false,
         successMsg: null,
         errorMsg: null,
@@ -79,6 +74,24 @@ const categorySlice = createSlice({
                 state.errorMsg = null;
             })
             .addCase(addCategory.rejected, (state, { payload }) => {
+                state.loading = false;
+                state.errorMsg = payload.message;
+                state.successMsg = null;
+            })
+
+            .addCase(getCategories.pending, (state) => {
+                state.loading = true;
+                state.errorMsg = null;
+                state.successMsg = null;
+            })
+            .addCase(getCategories.fulfilled, (state, { payload }) => {
+                state.loading = false;
+                state.categories = payload.categories;
+                state.totalCategory = payload.totalCategory;
+                state.successMsg = null;
+                state.errorMsg = null;
+            })
+            .addCase(getCategories.rejected, (state, { payload }) => {
                 state.loading = false;
                 state.errorMsg = payload.message;
                 state.successMsg = null;
