@@ -1,6 +1,17 @@
+import { FaSpinner } from "react-icons/fa";
 import SingleCategory from "./SingleCategory";
 
-const CategoryList = ({ categories }) => {
+const CategoryList = ({ categories, loading }) => {
+
+    if (loading) {
+        return (
+            <tr>
+                <td colSpan="4" className="text-center">
+                    <FaSpinner className="animate-spin text-2xl mx-auto" />
+                </td>
+            </tr>
+        );
+    }
 
 
     return (
@@ -18,7 +29,7 @@ const CategoryList = ({ categories }) => {
                 <tbody>
                     {
                         categories.map((category, index) =>
-                            <SingleCategory key={category._id} category={category} index={index}></SingleCategory>)
+                            <SingleCategory key={category._id} category={category} index={index} loading={loading}></SingleCategory>)
                     }
                 </tbody>
 

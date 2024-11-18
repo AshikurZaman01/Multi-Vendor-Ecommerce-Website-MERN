@@ -77,12 +77,11 @@ const Category = () => {
 
 
     useEffect(() => {
-
         const obj = {
             perPage: parseInt(perPageItems),
             page: parseInt(currentPage),
             searchValue: searchData
-        }
+        };
 
         dispatch(getCategories(obj));
 
@@ -100,7 +99,7 @@ const Category = () => {
                         <CategorySearch searchData={searchData} setSearchData={setSearchData} />
                     </div>
 
-                    <CategoryList categories={categories} />
+                    <CategoryList categories={categories} loading={loading} />
 
                 </div>
 

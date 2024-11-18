@@ -26,6 +26,8 @@ export const getCategories = createAsyncThunk("category/getCategories", async ({
 
     try {
 
+
+
         const { data } = await baseURL.get(`admin/getCategory?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`,
             {
                 withCredentials: true,
@@ -69,7 +71,11 @@ const categorySlice = createSlice({
             })
             .addCase(addCategory.fulfilled, (state, { payload }) => {
                 state.loading = false;
-                state.categories = payload;
+                if (Array.isArray(state.categories)) {
+                    state.categories.push(payload.data); 
+                } else {
+                    state.categories = [payload.data]; 
+                }
                 state.successMsg = payload.message;
                 state.errorMsg = null;
             })
